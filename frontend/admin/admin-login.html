@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Portal Login — KAVIN TRAVELS</title>
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+</head>
+<body style="padding-top:0;background:var(--color-primary);min-height:100vh;display:flex;align-items:center;justify-content:center;">
+
+  <div style="width:100%;max-width:440px;padding:20px;">
+    <div style="background:#ffffff;border-radius:24px;padding:40px 32px;box-shadow:var(--shadow-xl);text-align:center;">
+      
+      <div style="width:56px;height:56px;border-radius:14px;background:rgba(10,25,47,0.08);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 16px;">
+        ⚙️
+      </div>
+      
+      <h2 style="font-size:1.6rem;color:var(--color-dark);margin-bottom:4px;">KAVIN TRAVELS</h2>
+      <p style="color:var(--color-mid-gray);font-size:0.9rem;margin-bottom:28px;">Administrator Portal Authentication</p>
+
+      <form id="admin-login-form" onsubmit="return handleAdminLogin(event)" style="text-align:left;">
+        <div class="form-group">
+          <label for="admin-email">Admin Email Address</label>
+          <input type="email" id="admin-email" placeholder="kavinmuthu84@gmail.com" required autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="admin-password">Password</label>
+          <input type="password" id="admin-password" placeholder="••••••••" required autocomplete="current-password" />
+        </div>
+
+        <button type="submit" class="btn btn-navy btn-lg" id="btn-admin-submit" style="width:100%;margin-top:16px;">
+          Access Admin Dashboard
+        </button>
+      </form>
+
+      <div style="margin-top:28px;border-top:1px solid var(--color-light-gray);padding-top:16px;">
+        <a href="../index.html" style="font-size:0.88rem;color:var(--color-mid-gray);font-weight:600;">← Return to Customer Website</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

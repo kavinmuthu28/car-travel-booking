@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed — KAVIN TRAVELS</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/confirmation.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">🚗</div>
+        <div class="logo-text">
+          <span class="logo-name">KAVIN <span>TRAVELS</span></span>
+          <span class="logo-tagline">Ride with confidence</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="cars.html">🚗 Cars</a></li>
+        <li><a href="booking.html">📅 Book a Trip</a></li>
+        <li><a href="my-bookings.html">📋 My Bookings</a></li>
+        <li><a href="contact.html">📞 Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="nav-guest" style="display:flex;gap:10px;">
+          <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <div id="nav-customer" style="display:none;align-items:center;gap:12px;">
+          <div class="nav-user">
+            <div class="nav-user-avatar">👤</div>
+            <span class="nav-user-name" id="nav-user-name">Hello, User</span>
+          </div>
+          <a href="my-bookings.html" class="btn btn-secondary btn-sm">My Bookings</a>
+          <button onclick="logout()" class="btn btn-primary btn-sm">Logout</button>
+        </div>
+        <div id="nav-admin" style="display:none;align-items:center;gap:12px;">
+          <a href="admin/dashboard.html" class="btn btn-navy btn-sm">Admin Portal</a>
+          <button onclick="logout()" class="btn btn-primary btn-sm">Logout</button>
+        </div>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+      <a href="index.html">🏠 Home</a>
+      <a href="cars.html">🚗 Our Cars</a>
+      <a href="booking.html">📅 Book a Trip</a>
+      <a href="my-bookings.html">📋 My Bookings</a>
+      <a href="contact.html">📞 Contact Us</a>
+      <div class="nav-mobile-divider"></div>
+      <div id="mobile-nav-guest">
+        <a href="login.html">🔐 Login</a>
+        <a href="register.html">📝 Register</a>
+      </div>
+      <div id="mobile-nav-customer" style="display:none;flex-direction:column;">
+        <span id="mobile-nav-user-name" style="padding:12px 16px;font-size:0.9rem;color:var(--color-mid-gray);">Hello, User</span>
+        <a href="my-bookings.html">📋 My Bookings</a>
+        <a href="#" onclick="logout();return false;">🚪 Logout</a>
+      </div>
+      <div id="mobile-nav-admin" style="display:none;flex-direction:column;">
+        <a href="admin/dashboard.html">📊 Admin Dashboard</a>
+        <a href="#" onclick="logout();return false;">🚪 Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONFIRMATION RECEIPT CARD -->
+  <main class="confirmation-page">
+    <div class="container">
+      <div class="receipt-card">
+        <div class="receipt-header">
+          <div class="receipt-success-icon">✓</div>
+          <h2>Booking Successfully Confirmed!</h2>
+          <p>Thank you for choosing KAVIN TRAVELS. Your trip is registered in our system.</p>
+          <div class="booking-ref-pill" id="conf-booking-number">
+            BOOKING # CTB-CONFIRMED
+          </div>
+        </div>
+
+        <div class="receipt-body">
+          <div class="receipt-section-title">Trip &amp; Passenger Summary</div>
+          
+          <div class="receipt-grid">
+            <div class="receipt-item">
+              <span class="item-label">Customer Name</span>
+              <span class="item-value" id="conf-customer">—</span>
+            </div>
+            <div class="receipt-item">
+              <span class="item-label">Travel Date &amp; Time</span>
+              <span class="item-value" id="conf-datetime">—</span>
+            </div>
+            <div class="receipt-item">
+              <span class="item-label">Pickup Location</span>
+              <span class="item-value" id="conf-from">—</span>
+            </div>
+            <div class="receipt-item">
+              <span class="item-label">Dropoff Destination</span>
+              <span class="item-value" id="conf-to">—</span>
+            </div>
+            <div class="receipt-item">
+              <span class="item-label">Trip Type</span>
+              <span class="item-value" id="conf-triptype">—</span>
+            </div>
+            <div class="receipt-item">
+              <span class="item-label">Calculated Distance</span>
+              <span class="item-value" id="conf-distance">—</span>
+            </div>
+            <div class="receipt-item">
+              <span class="item-label">Vehicle Selected</span>
+              <span class="item-value" id="conf-car">—</span>
+            </div>
+            <div class="receipt-item">
+              <span class="item-label">Booking Status</span>
+              <div id="conf-status" style="margin-top:2px;">—</div>
+            </div>
+          </div>
+
+          <div class="receipt-fare-box">
+            <div class="receipt-fare-row">
+              <span>Driver Allowance</span>
+              <span>₹500 (Included)</span>
+            </div>
+            <div class="receipt-fare-row total">
+              <span>Total Estimated Fare</span>
+              <span id="conf-amount">₹0</span>
+            </div>
+          </div>
+
+          <div class="receipt-actions">
+            <a href="my-bookings.html" class="btn btn-primary">📋 View in My Bookings</a>
+            <a href="index.html" class="btn btn-secondary">🏠 Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:none;padding-top:0;justify-content:center;">
+        <span>© 2026 KAVIN TRAVELS. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/confirmation.js"></script>
+</body>
+</html>

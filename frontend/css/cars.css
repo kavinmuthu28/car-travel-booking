@@ -1,0 +1,118 @@
+/* ================================================================
+   cars.css — Fleet & Cars Catalog styles
+   KAVIN TRAVELS
+   ================================================================ */
+
+.cars-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+  padding: var(--space-2xl) 0;
+}
+
+/* FILTER SIDEBAR */
+.filter-panel {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  padding: var(--space-lg);
+  position: sticky;
+  top: calc(var(--navbar-height) + 20px);
+}
+
+.filter-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.filter-panel-header h3 {
+  font-size: 1.1rem;
+  color: var(--color-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-panel .form-group {
+  margin-bottom: var(--space-md);
+}
+
+.filter-panel .form-group label {
+  font-size: 0.8rem;
+  color: var(--color-dark);
+  margin-bottom: 4px;
+}
+
+.filter-panel .form-group select,
+.filter-panel .form-group input {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+}
+
+.filter-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.filter-actions .btn {
+  flex: 1;
+  font-size: 0.85rem;
+  padding: 10px 14px;
+}
+
+.result-count {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-mid-gray);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.result-count .count-badge {
+  background: var(--color-light);
+  color: var(--color-primary);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+}
+
+/* CARS GRID */
+.cars-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+@media (max-width: 1180px) {
+  .cars-list-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 960px) {
+  .cars-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  .filter-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .cars-list-grid {
+    grid-template-columns: 1fr;
+  }
+}

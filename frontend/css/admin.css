@@ -1,0 +1,193 @@
+/* ================================================================
+   admin.css — Admin Portal Dashboard & Management Styles
+   KAVIN TRAVELS
+   ================================================================ */
+
+.admin-body {
+  background-color: #f8fafc;
+  padding-top: var(--navbar-height);
+  min-height: 100vh;
+}
+
+.admin-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.stat-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg) var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  border-left: 5px solid var(--color-primary);
+  transition: all var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card.accent  { border-left-color: var(--color-accent); }
+.stat-card.gold    { border-left-color: var(--color-gold); }
+.stat-card.success { border-left-color: var(--color-success); }
+
+.stat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--color-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.stat-card.accent .stat-icon  { background: var(--color-danger-light); color: var(--color-accent); }
+.stat-card.gold .stat-icon    { background: var(--color-gold-light); color: var(--color-gold-dark); }
+.stat-card.success .stat-icon { background: var(--color-success-light); color: var(--color-success); }
+
+.stat-info .stat-num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-dark);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.stat-info .stat-title {
+  font-size: 0.85rem;
+  color: var(--color-mid-gray);
+  margin-top: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Action Toolbars */
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.admin-toolbar-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-dark);
+}
+
+.admin-search-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--color-white);
+  border: 1.5px solid var(--color-light-gray);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+  min-width: 280px;
+}
+
+.admin-search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+/* Data Tables */
+.table-container {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.data-table th {
+  background: var(--color-bg-subtle);
+  font-weight: 700;
+  color: var(--color-dark);
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  letter-spacing: 0.6px;
+}
+
+.data-table tr:hover td {
+  background-color: #f8fafc;
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.table-thumb {
+  width: 58px;
+  height: 40px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+  background: #f1f5f9;
+}
+
+.table-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.table-actions .btn {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+/* Modal form controls */
+.modal-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+@media (max-width: 1120px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .modal-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

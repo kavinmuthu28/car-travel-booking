@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — KAVIN TRAVELS</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body style="padding-top:0;">
+
+  <div class="auth-page">
+    <div class="auth-split">
+
+      <!-- Left Brand Panel -->
+      <div class="auth-brand-panel">
+        <a href="index.html" class="auth-brand-logo">
+          <div class="logo-icon">🚗</div>
+          <span>KAVIN TRAVELS</span>
+        </a>
+
+        <div class="auth-brand-content">
+          <h1>Start Your <span>Journey</span></h1>
+          <p>Join thousands of happy travelers across South India who trust KAVIN TRAVELS for premium, punctual, and safe intercity rides.</p>
+
+          <div class="auth-features-list">
+            <div class="auth-feature-item">
+              <div class="feature-check">✓</div>
+              <span>Exclusive member discounts on popular routes</span>
+            </div>
+            <div class="auth-feature-item">
+              <div class="feature-check">✓</div>
+              <span>Instant WhatsApp &amp; Email trip receipts</span>
+            </div>
+            <div class="auth-feature-item">
+              <div class="feature-check">✓</div>
+              <span>One-click booking for frequent destinations</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-brand-footer">
+          © 2026 KAVIN TRAVELS. All rights reserved.
+        </div>
+      </div>
+
+      <!-- Right Form Panel -->
+      <div class="auth-form-panel">
+        <div class="auth-form-container">
+          <div class="auth-header">
+            <h2>Create Account</h2>
+            <p>Enter your details below to register your account</p>
+          </div>
+
+          <form id="register-form" onsubmit="return handleRegisterSubmit(event)">
+            <div class="form-group">
+              <label for="reg-name">Full Name</label>
+              <input type="text" id="reg-name" placeholder="Kavin" required autocomplete="name" />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-email">Email Address</label>
+              <input type="email" id="reg-email" placeholder="kavin@example.com" required autocomplete="email" />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-phone">Phone / WhatsApp Number</label>
+              <input type="tel" id="reg-phone" placeholder="+91 80720 07218" required autocomplete="tel" />
+            </div>
+
+            <div class="form-group">
+              <label for="reg-password">Password</label>
+              <div class="auth-password-wrapper">
+                <input type="password" id="reg-password" placeholder="At least 6 characters" required autocomplete="new-password" />
+                <button type="button" class="auth-password-toggle" onclick="togglePasswordVisibility('reg-password')" title="Toggle password visibility">👁</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-confirm-password">Confirm Password</label>
+              <div class="auth-password-wrapper">
+                <input type="password" id="reg-confirm-password" placeholder="Re-type your password" required autocomplete="new-password" />
+                <button type="button" class="auth-password-toggle" onclick="togglePasswordVisibility('reg-confirm-password')" title="Toggle password visibility">👁</button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" id="btn-reg-submit" style="width:100%;margin-top:var(--space-md);">
+              Create Account
+            </button>
+          </form>
+
+          <div class="auth-footer-links" style="margin-top:var(--space-lg);">
+            Already have an account? <a href="login.html">Sign In here</a>
+          </div>
+
+          <div class="text-center" style="margin-top:var(--space-md);">
+            <a href="index.html" style="font-size:0.88rem;color:var(--color-mid-gray);font-weight:600;">← Return to Homepage</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    function togglePasswordVisibility(inputId) {
+      const input = document.getElementById(inputId);
+      if (input) {
+        input.type = input.type === 'password' ? 'text' : 'password';
+      }
+    }
+  </script>
+</body>
+</html>

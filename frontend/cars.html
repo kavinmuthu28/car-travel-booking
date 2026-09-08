@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Fleet — KAVIN TRAVELS</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/cars.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">🚗</div>
+        <div class="logo-text">
+          <span class="logo-name">KAVIN <span>TRAVELS</span></span>
+          <span class="logo-tagline">Ride with confidence</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="cars.html" class="active">🚗 Cars</a></li>
+        <li><a href="booking.html">📅 Book a Trip</a></li>
+        <li><a href="my-bookings.html">📋 My Bookings</a></li>
+        <li><a href="contact.html">📞 Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="nav-guest" style="display:flex;gap:10px;">
+          <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <div id="nav-customer" style="display:none;align-items:center;gap:12px;">
+          <div class="nav-user">
+            <div class="nav-user-avatar">👤</div>
+            <span class="nav-user-name" id="nav-user-name">Hello, User</span>
+          </div>
+          <a href="my-bookings.html" class="btn btn-secondary btn-sm">My Bookings</a>
+          <button onclick="logout()" class="btn btn-primary btn-sm">Logout</button>
+        </div>
+        <div id="nav-admin" style="display:none;align-items:center;gap:12px;">
+          <a href="admin/dashboard.html" class="btn btn-navy btn-sm">Admin Portal</a>
+          <button onclick="logout()" class="btn btn-primary btn-sm">Logout</button>
+        </div>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+      <a href="index.html">🏠 Home</a>
+      <a href="cars.html" class="active">🚗 Our Cars</a>
+      <a href="booking.html">📅 Book a Trip</a>
+      <a href="my-bookings.html">📋 My Bookings</a>
+      <a href="contact.html">📞 Contact Us</a>
+      <div class="nav-mobile-divider"></div>
+      <div id="mobile-nav-guest">
+        <a href="login.html">🔐 Login</a>
+        <a href="register.html">📝 Register</a>
+      </div>
+      <div id="mobile-nav-customer" style="display:none;flex-direction:column;">
+        <span id="mobile-nav-user-name" style="padding:12px 16px;font-size:0.9rem;color:var(--color-mid-gray);">Hello, User</span>
+        <a href="my-bookings.html">📋 My Bookings</a>
+        <a href="#" onclick="logout();return false;">🚪 Logout</a>
+      </div>
+      <div id="mobile-nav-admin" style="display:none;flex-direction:column;">
+        <a href="admin/dashboard.html">📊 Admin Dashboard</a>
+        <a href="#" onclick="logout();return false;">🚪 Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="container">
+      <h1>🚗 Our Vehicle Fleet</h1>
+      <p>Choose from our wide collection of sanitized, premium Hatchbacks, Sedans, SUVs &amp; Luxury Vans</p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Fleet Catalog</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN FLEET CONTENT -->
+  <main class="container">
+    <div class="cars-layout">
+
+      <!-- Filter Sidebar -->
+      <aside class="filter-panel">
+        <div class="filter-panel-header">
+          <h3>🔍 Filter Fleet</h3>
+        </div>
+        <div class="form-group">
+          <label for="filter-fuel">Fuel Type</label>
+          <select id="filter-fuel" onchange="applyFilters()">
+            <option value="">All Fuel Types</option>
+            <option value="petrol">Petrol</option>
+            <option value="diesel">Diesel</option>
+            <option value="electric">Electric</option>
+            <option value="cng">CNG</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="filter-transmission">Transmission</label>
+          <select id="filter-transmission" onchange="applyFilters()">
+            <option value="">All Transmissions</option>
+            <option value="manual">Manual</option>
+            <option value="automatic">Automatic</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="filter-seats">Seating Capacity</label>
+          <select id="filter-seats" onchange="applyFilters()">
+            <option value="">All Capacities</option>
+            <option value="2-4">2–4 Seats (Hatchback/Sedan)</option>
+            <option value="5-7">5–7 Seats (Compact/Full SUV)</option>
+            <option value="8+">8+ Seats (Tempo/Traveller)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="filter-available">Availability Status</label>
+          <select id="filter-available" onchange="applyFilters()">
+            <option value="">All Statuses</option>
+            <option value="yes">Available Only</option>
+          </select>
+        </div>
+        <div class="filter-actions">
+          <button class="btn btn-secondary btn-sm" onclick="clearFilters()">Reset Filters</button>
+        </div>
+        <div class="result-count" id="result-count">
+          <span>Results</span>
+          <span class="count-badge">Loading...</span>
+        </div>
+      </aside>
+
+      <!-- Cars Grid -->
+      <div id="cars-grid" class="cars-list-grid">
+        <div class="loading-overlay" style="grid-column:1/-1;">
+          <div class="spinner"></div>
+          <span>Loading available fleet...</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-name">🚗 KAVIN <span>TRAVELS</span></div>
+          <p>Comfortable, reliable, and convenient car travel for every destination across Tamil Nadu, Kerala, Karnataka, and beyond.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cars.html">Our Fleet</a></li>
+            <li><a href="booking.html">Book a Trip</a></li>
+            <li><a href="my-bookings.html">My Bookings</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="booking.html">One-Way Drops</a></li>
+            <li><a href="booking.html">Round Trips</a></li>
+            <li><a href="booking.html">Multi-Day Tours</a></li>
+            <li><a href="booking.html">Airport Transfers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📞</span>
+            <a href="tel:+918072007218">+91 80720 07218</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">✉</span>
+            <a href="mailto:kavinmuthu84@gmail.com">kavinmuthu84@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 KAVIN TRAVELS. All rights reserved.</span>
+        <span>Crafted for premium travel &amp; safety</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cars.js"></script>
+</body>
+</html>

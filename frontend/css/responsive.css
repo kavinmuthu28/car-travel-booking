@@ -1,0 +1,10 @@
+/* Responsive utility styles */
+@media (max-width: 1024px) {
+  .container { padding: 0 20px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-actions { display: none !important; }
+  .nav-toggle { display: flex !important; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}

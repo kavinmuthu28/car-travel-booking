@@ -1,0 +1,179 @@
+/* ================================================================
+   confirmation.css — Booking Confirmation & Receipt Page
+   KAVIN TRAVELS
+   ================================================================ */
+
+.confirmation-page {
+  padding: var(--space-3xl) 0;
+  background: var(--color-bg-subtle);
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+}
+
+.receipt-card {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  overflow: hidden;
+  position: relative;
+}
+
+.receipt-header {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #112240 100%);
+  color: #ffffff;
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+  position: relative;
+}
+
+.receipt-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background: var(--color-success);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin: 0 auto var(--space-md);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+  animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleIn {
+  0%   { transform: scale(0); opacity: 0; }
+  70%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.receipt-header h2 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.receipt-header p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+}
+
+.booking-ref-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--space-md);
+  padding: 6px 18px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+}
+
+.receipt-body {
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.receipt-section-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-mid-gray);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.receipt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.receipt-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.receipt-item .item-label {
+  font-size: 0.8rem;
+  color: var(--color-mid-gray);
+  margin-bottom: 2px;
+}
+
+.receipt-item .item-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.receipt-car-preview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  border: 1px solid var(--color-light-gray);
+}
+
+.receipt-car-thumb {
+  width: 90px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.receipt-fare-box {
+  background: linear-gradient(135deg, rgba(10, 25, 47, 0.04) 0%, rgba(245, 158, 11, 0.06) 100%);
+  border: 1.5px dashed var(--color-light-gray);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.receipt-fare-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding: 4px 0;
+  color: var(--color-mid-gray);
+}
+
+.receipt-fare-row.total {
+  border-top: 1px solid var(--color-light-gray);
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-accent);
+}
+
+.receipt-actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.receipt-actions .btn {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .receipt-grid {
+    grid-template-columns: 1fr;
+  }
+  .receipt-actions {
+    flex-direction: column;
+  }
+}

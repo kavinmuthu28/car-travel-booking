@@ -1,0 +1,226 @@
+/* ================================================================
+   auth.css — Login & Register split-view layout styles
+   KAVIN TRAVELS
+   ================================================================ */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  background: var(--color-bg-subtle);
+  margin-top: calc(-1 * var(--navbar-height));
+}
+
+.auth-split {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Left Brand Panel */
+.auth-brand-panel {
+  flex: 1.1;
+  background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(5, 12, 24, 0.96) 100%),
+              url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&q=80') center/cover no-repeat;
+  color: var(--color-white);
+  padding: var(--space-3xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-brand-panel::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.auth-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.auth-brand-logo .logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.auth-brand-content {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+}
+
+.auth-brand-content h1 {
+  color: #ffffff;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+  line-height: 1.15;
+}
+
+.auth-brand-content h1 span {
+  color: var(--color-gold);
+}
+
+.auth-brand-content p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  margin-bottom: var(--space-xl);
+}
+
+.auth-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.auth-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.auth-feature-item .feature-check {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--color-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.auth-brand-footer {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 2;
+}
+
+/* Right Form Panel */
+.auth-form-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-xl);
+  background: var(--color-white);
+}
+
+.auth-form-container {
+  width: 100%;
+  max-width: 440px;
+}
+
+.auth-header {
+  margin-bottom: var(--space-xl);
+  text-align: left;
+}
+
+.auth-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-dark);
+  margin-bottom: 6px;
+}
+
+.auth-header p {
+  color: var(--color-mid-gray);
+  font-size: 0.95rem;
+}
+
+.auth-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-password-toggle {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--color-mid-gray);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition);
+}
+
+.auth-password-toggle:hover {
+  color: var(--color-primary);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: var(--space-lg) 0;
+  color: var(--color-mid-gray);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.auth-divider span {
+  padding: 0 12px;
+}
+
+.auth-footer-links {
+  text-align: center;
+  font-size: 0.92rem;
+  margin-top: var(--space-lg);
+  color: var(--color-mid-gray);
+}
+
+.auth-footer-links a {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.auth-footer-links a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+@media (max-width: 960px) {
+  .auth-brand-panel {
+    display: none;
+  }
+  .auth-form-panel {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}

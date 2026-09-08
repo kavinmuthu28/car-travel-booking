@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Trip — KAVIN TRAVELS</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/booking.css" />
+  <!-- Free Interactive Map (Leaflet / OpenStreetMap) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">🚗</div>
+        <div class="logo-text">
+          <span class="logo-name">KAVIN <span>TRAVELS</span></span>
+          <span class="logo-tagline">Ride with confidence</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="cars.html">🚗 Cars</a></li>
+        <li><a href="booking.html" class="active">📅 Book a Trip</a></li>
+        <li><a href="my-bookings.html">📋 My Bookings</a></li>
+        <li><a href="contact.html">📞 Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="nav-guest" style="display:flex;gap:10px;">
+          <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <div id="nav-customer" style="display:none;align-items:center;gap:12px;">
+          <div class="nav-user">
+            <div class="nav-user-avatar">👤</div>
+            <span class="nav-user-name" id="nav-user-name">Hello, User</span>
+          </div>
+          <a href="my-bookings.html" class="btn btn-secondary btn-sm">My Bookings</a>
+          <button onclick="logout()" class="btn btn-primary btn-sm">Logout</button>
+        </div>
+        <div id="nav-admin" style="display:none;align-items:center;gap:12px;">
+          <a href="admin/dashboard.html" class="btn btn-navy btn-sm">Admin Portal</a>
+          <button onclick="logout()" class="btn btn-primary btn-sm">Logout</button>
+        </div>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+      <a href="index.html">🏠 Home</a>
+      <a href="cars.html">🚗 Cars</a>
+      <a href="booking.html" class="active">📅 Book a Trip</a>
+      <a href="my-bookings.html">📋 My Bookings</a>
+      <a href="contact.html">📞 Contact Us</a>
+      <div class="nav-mobile-divider"></div>
+      <div id="mobile-nav-guest">
+        <a href="login.html">🔐 Login</a>
+        <a href="register.html">📝 Register</a>
+      </div>
+      <div id="mobile-nav-customer" style="display:none;flex-direction:column;">
+        <span id="mobile-nav-user-name" style="padding:12px 16px;font-size:0.9rem;color:var(--color-mid-gray);">Hello, User</span>
+        <a href="my-bookings.html">📋 My Bookings</a>
+        <a href="#" onclick="logout();return false;">🚪 Logout</a>
+      </div>
+      <div id="mobile-nav-admin" style="display:none;flex-direction:column;">
+        <a href="admin/dashboard.html">📊 Admin Dashboard</a>
+        <a href="#" onclick="logout();return false;">🚪 Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- STEP PROGRESS BAR -->
+  <div class="steps-bar-wrapper">
+    <div class="steps-bar">
+      <div class="step-item active" id="step-node-1">
+        <div class="step-num">1</div>
+        <span>Location &amp; Route</span>
+      </div>
+      <div class="step-connector" id="step-conn-1"></div>
+      <div class="step-item" id="step-node-2">
+        <div class="step-num">2</div>
+        <span>Travel Details</span>
+      </div>
+      <div class="step-connector" id="step-conn-2"></div>
+      <div class="step-item" id="step-node-3">
+        <div class="step-num">3</div>
+        <span>Select Car</span>
+      </div>
+      <div class="step-connector" id="step-conn-3"></div>
+      <div class="step-item" id="step-node-4">
+        <div class="step-num">4</div>
+        <span>Review &amp; Confirm</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN BOOKING CONTAINER -->
+  <main class="container">
+    <div class="booking-layout">
+
+      <!-- LEFT SIDE: STEP PANELS -->
+      <div class="booking-form-area">
+
+        <!-- PANEL 1: LOCATION -->
+        <section class="booking-panel active" id="panel-1">
+          <h2 class="panel-title">
+            <span class="panel-icon">📍</span> Step 1: Where are you traveling?
+          </h2>
+          
+          <div class="booking-locations-wrapper">
+            <div class="form-group" style="position:relative;">
+              <label for="pickup-input"><span style="color:var(--color-success);font-weight:900;">●</span> Pickup Location (From)</label>
+              <input type="text" id="pickup-input" placeholder="Search city, district, airport, or railway station..." autocomplete="off" required />
+              <input type="hidden" id="pickup-lat" />
+              <input type="hidden" id="pickup-lng" />
+            </div>
+
+            <div style="display:flex;justify-content:center;margin:-4px 0 12px;">
+              <button type="button" id="booking-swap-btn" class="location-swap-btn" title="Swap pickup and destination" aria-label="Swap pickup and destination">⇄</button>
+            </div>
+
+            <div class="form-group" style="position:relative;">
+              <label for="dropoff-input"><span style="color:var(--color-danger);font-weight:900;">●</span> Destination Location (To)</label>
+              <input type="text" id="dropoff-input" placeholder="Search hill station, temple city, tourist destination..." autocomplete="off" required />
+              <input type="hidden" id="dropoff-lat" />
+              <input type="hidden" id="dropoff-lng" />
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem;color:var(--color-mid-gray);margin-bottom:var(--space-sm);">
+            💡 <em>Select from all 38 Tamil Nadu districts, airports, stations &amp; tourist spots. Live route &amp; driving distance calculate automatically.</em>
+          </p>
+
+          <!-- Map Container -->
+          <div id="map"></div>
+
+          <!-- Calculated Route Info -->
+          <div class="route-info" id="route-info">
+            <div class="route-stat">
+              <div class="stat-label">Driving Distance</div>
+              <div class="stat-value" id="disp-distance">0 km</div>
+            </div>
+            <div class="route-stat">
+              <div class="stat-label">Est. Duration</div>
+              <div class="stat-value" id="disp-duration">0 hrs</div>
+            </div>
+          </div>
+
+          <div class="panel-nav">
+            <button type="button" class="btn btn-primary btn-lg" id="btn-to-step-2" onclick="goToStep(2)">
+              Continue to Travel Details →
+            </button>
+          </div>
+        </section>
+
+        <!-- PANEL 2: TRAVEL DETAILS -->
+        <section class="booking-panel" id="panel-2">
+          <h2 class="panel-title">
+            <span class="panel-icon">🗓️</span> Step 2: Date, Time &amp; Trip Type
+          </h2>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="travel-date">Travel Date</label>
+              <input type="date" id="travel-date" required />
+            </div>
+            <div class="form-group">
+              <label for="travel-time">Pickup Time</label>
+              <input type="time" id="travel-time" value="09:00" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Trip Type</label>
+            <div class="trip-toggles">
+              <button type="button" class="trip-toggle active" data-type="ONE_WAY" onclick="selectTripType('ONE_WAY')">
+                🚗 One Way Drop
+              </button>
+              <button type="button" class="trip-toggle" data-type="ROUND_TRIP" onclick="selectTripType('ROUND_TRIP')">
+                🔄 Round Trip (Same/Next Day)
+              </button>
+              <button type="button" class="trip-toggle" data-type="MULTI_DAY" onclick="selectTripType('MULTI_DAY')">
+                🏖️ Multi-Day Tour
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group" id="return-date-group" style="display:none;">
+            <label for="return-date">Return Date</label>
+            <input type="date" id="return-date" />
+          </div>
+
+          <div class="form-group">
+            <label>Number of Passengers</label>
+            <div class="passenger-control">
+              <button type="button" onclick="adjustPassengers(-1)" aria-label="Decrease">−</button>
+              <span class="passenger-count" id="passenger-count">4</span>
+              <button type="button" onclick="adjustPassengers(1)" aria-label="Increase">+</button>
+              <span style="font-size:0.85rem;color:var(--color-mid-gray);margin-left:10px;">(Max 8 passengers)</span>
+            </div>
+          </div>
+
+          <div class="panel-nav">
+            <button type="button" class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="goToStep(3)">Find Available Cars →</button>
+          </div>
+        </section>
+
+        <!-- PANEL 3: AVAILABLE CARS -->
+        <section class="booking-panel" id="panel-3">
+          <h2 class="panel-title">
+            <span class="panel-icon">🚗</span> Step 3: Choose Your Vehicle
+          </h2>
+          <p style="margin-bottom:var(--space-md);color:var(--color-mid-gray);">
+            Select a verified vehicle that fits your group size, luggage requirements, and budget.
+          </p>
+
+          <div id="avail-cars-container" class="avail-cars-grid">
+            <div class="loading-overlay" style="grid-column:1/-1;">
+              <div class="spinner"></div>
+              <span>Checking available fleet...</span>
+            </div>
+          </div>
+
+          <div class="panel-nav">
+            <button type="button" class="btn btn-secondary" onclick="goToStep(2)">← Back</button>
+            <button type="button" class="btn btn-primary" id="btn-to-step-4" onclick="goToStep(4)" disabled>
+              Continue to Review →
+            </button>
+          </div>
+        </section>
+
+        <!-- PANEL 4: REVIEW & CONFIRM -->
+        <section class="booking-panel" id="panel-4">
+          <h2 class="panel-title">
+            <span class="panel-icon">📋</span> Step 4: Review &amp; Confirm Booking
+          </h2>
+
+          <!-- Guest banner -->
+          <div id="guest-auth-alert" class="login-prompt" style="display:none;">
+            ⚠️ You are booking as Guest. Please <a href="login.html?redirect=booking.html">Log In</a> or <a href="register.html?redirect=booking.html">Register</a> to track and view your booking under My Bookings.
+          </div>
+
+          <!-- Customer info form -->
+          <div class="review-card">
+            <h4 style="margin-bottom:14px;color:var(--color-dark);">👤 Passenger Contact Information</h4>
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="cust-name">Full Name</label>
+                <input type="text" id="cust-name" placeholder="Your full name" required />
+              </div>
+              <div class="form-group">
+                <label for="cust-email">Email Address</label>
+                <input type="email" id="cust-email" placeholder="you@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cust-phone">Phone / WhatsApp Number</label>
+              <input type="tel" id="cust-phone" placeholder="+91 9876543210" required />
+            </div>
+            <div class="form-group">
+              <label for="special-requests">Special Instructions (Optional)</label>
+              <textarea id="special-requests" rows="2" placeholder="Luggage count, child seat, specific pickup landmark, etc."></textarea>
+            </div>
+          </div>
+
+          <!-- Full Summary in Review -->
+          <div class="review-card" id="review-trip-details">
+            <!-- Populated dynamically by updateReviewDetails() -->
+          </div>
+
+          <div class="panel-nav">
+            <button type="button" class="btn btn-secondary" onclick="goToStep(3)">← Back</button>
+            <button type="button" class="btn btn-primary btn-lg" id="btn-confirm-booking" onclick="confirmAndCreateBooking()">
+              ✅ Confirm &amp; Book Now
+            </button>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT SIDE: STICKY FARE & TRIP SUMMARY -->
+      <aside class="booking-summary">
+        <h3>Trip Summary</h3>
+        <div class="summary-row">
+          <span class="label">Pickup</span>
+          <span class="value" id="sum-from">—</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Destination</span>
+          <span class="value" id="sum-to">—</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Distance</span>
+          <span class="value" id="sum-dist">—</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Est. Duration</span>
+          <span class="value" id="sum-dur">—</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Date &amp; Time</span>
+          <span class="value" id="sum-datetime">—</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Trip Type</span>
+          <span class="value" id="sum-triptype">One Way</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Passengers</span>
+          <span class="value" id="sum-passengers">4</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Selected Car</span>
+          <span class="value" id="sum-car">—</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Rate / km</span>
+          <span class="value" id="sum-rate">—</span>
+        </div>
+        <div class="summary-row">
+          <span class="label">Driver Allowance</span>
+          <span class="value" id="sum-allowance">₹500</span>
+        </div>
+
+        <hr class="summary-divider" />
+
+        <div class="summary-total">
+          <span class="total-label">Estimated Fare</span>
+          <span class="total-value" id="sum-total">₹0</span>
+        </div>
+        <div class="summary-note">
+          * Transparent pricing. The final fare is validated and confirmed securely by backend.
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-name">🚗 KAVIN <span>TRAVELS</span></div>
+          <p>Comfortable, reliable, and convenient car travel for every destination across Tamil Nadu, Kerala, Karnataka, and beyond.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cars.html">Our Fleet</a></li>
+            <li><a href="booking.html">Book a Trip</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="booking.html">One-Way Drops</a></li>
+            <li><a href="booking.html">Round Trips</a></li>
+            <li><a href="booking.html">Multi-Day Tours</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📞</span>
+            <a href="tel:+918072007218">+91 80720 07218</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">✉</span>
+            <a href="mailto:kavinmuthu84@gmail.com">kavinmuthu84@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 KAVIN TRAVELS. All rights reserved.</span>
+        <span>Crafted for premium travel &amp; safety</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/data/locations.js"></script>
+  <script src="js/location-selector.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

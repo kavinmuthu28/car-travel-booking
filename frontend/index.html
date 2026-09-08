@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KAVIN TRAVELS — Premium, comfortable, and reliable car travel for every destination across South India." />
+  <title>KAVIN TRAVELS — Your Journey, Our Ride</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">🚗</div>
+        <div class="logo-text">
+          <span class="logo-name">KAVIN <span>TRAVELS</span></span>
+          <span class="logo-tagline">Ride with confidence</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">🏠 Home</a></li>
+        <li><a href="cars.html">🚗 Cars</a></li>
+        <li><a href="booking.html">📅 Book a Trip</a></li>
+        <li><a href="my-bookings.html">📋 My Bookings</a></li>
+        <li><a href="contact.html">📞 Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div id="nav-guest" style="display:flex;gap:10px;">
+          <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+          <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <div id="nav-customer" style="display:none;align-items:center;gap:12px;">
+          <div class="nav-user">
+            <div class="nav-user-avatar">👤</div>
+            <span class="nav-user-name" id="nav-user-name">Hello, User</span>
+          </div>
+          <a href="my-bookings.html" class="btn btn-secondary btn-sm">My Bookings</a>
+          <button onclick="logout()" class="btn btn-primary btn-sm">Logout</button>
+        </div>
+        <div id="nav-admin" style="display:none;align-items:center;gap:12px;">
+          <a href="admin/dashboard.html" class="btn btn-navy btn-sm">Admin Portal</a>
+          <button onclick="logout()" class="btn btn-primary btn-sm">Logout</button>
+        </div>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+      <a href="index.html" class="active">🏠 Home</a>
+      <a href="cars.html">🚗 Our Cars</a>
+      <a href="booking.html">📅 Book a Trip</a>
+      <a href="my-bookings.html">📋 My Bookings</a>
+      <a href="contact.html">📞 Contact Us</a>
+      <div class="nav-mobile-divider"></div>
+      <div id="mobile-nav-guest">
+        <a href="login.html">🔐 Login</a>
+        <a href="register.html">📝 Register</a>
+      </div>
+      <div id="mobile-nav-customer" style="display:none;flex-direction:column;">
+        <span id="mobile-nav-user-name" style="padding:12px 16px;font-size:0.9rem;color:var(--color-mid-gray);">Hello, User</span>
+        <a href="my-bookings.html">📋 My Bookings</a>
+        <a href="#" onclick="logout();return false;">🚪 Logout</a>
+      </div>
+      <div id="mobile-nav-admin" style="display:none;flex-direction:column;">
+        <a href="admin/dashboard.html">📊 Admin Dashboard</a>
+        <a href="#" onclick="logout();return false;">🚪 Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">✨ Premium Car Travel &amp; Rental Experience</div>
+      <h1>Your Journey, <span>Our Ride</span></h1>
+      <p>Comfortable, reliable, and convenient car travel for every destination across South India. Book well-maintained vehicles with experienced drivers.</p>
+      <div class="hero-buttons">
+        <a href="booking.html" class="btn btn-primary btn-lg">📅 Book Your Ride</a>
+        <a href="cars.html" class="btn btn-outline-white btn-lg">🚗 Explore Cars</a>
+      </div>
+    </div>
+    <div class="hero-scroll" onclick="document.querySelector('.search-section').scrollIntoView({behavior:'smooth'})" title="Scroll Down">⌄</div>
+  </section>
+
+  <!-- SEARCH SECTION -->
+  <section class="search-section">
+    <div class="search-card">
+      <div class="search-card-header">
+        <h3>🔍 Quick Ride Search</h3>
+        <span class="search-hint">Instant route &amp; fare estimation</span>
+      </div>
+      <form class="search-form" id="search-form" onsubmit="return handleSearch(event)">
+        <div class="form-group" style="position:relative;">
+          <label for="search-from">Pickup Location</label>
+          <input type="text" id="search-from" placeholder="e.g. Coimbatore" autocomplete="off" />
+        </div>
+        <div class="search-swap-wrapper">
+          <button type="button" id="home-swap-btn" class="location-swap-btn" title="Swap pickup & destination" aria-label="Swap pickup and destination">⇄</button>
+        </div>
+        <div class="form-group" style="position:relative;">
+          <label for="search-to">Drop Location</label>
+          <input type="text" id="search-to" placeholder="e.g. Ooty, Munnar" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="search-date">Travel Date</label>
+          <input type="date" id="search-date" />
+        </div>
+        <div class="form-group">
+          <label for="search-passengers">Passengers</label>
+          <select id="search-passengers">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Search Available Cars</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- POPULAR DESTINATIONS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Explore Routes</span>
+        <h2>🗺️ Popular Travel Routes</h2>
+        <p>Discover South India's top getaways with fixed rates, transparent pricing, and punctual service.</p>
+      </div>
+      <div class="dest-grid" id="destinations-grid">
+        <div class="loading-overlay" style="grid-column:1/-1;">
+          <div class="spinner"></div>
+          <span>Loading popular routes...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED FLEET CARS -->
+  <section class="section" style="background:var(--color-bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Vehicles</span>
+        <h2>🚗 Featured Fleet</h2>
+        <p>Choose from our meticulously maintained fleet of Sedans, SUVs, and Luxury coaches.</p>
+      </div>
+      <div class="cars-grid" id="featured-cars-grid">
+        <div class="loading-overlay" style="grid-column:1/-1;">
+          <div class="spinner"></div>
+          <span>Loading vehicle fleet...</span>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top:var(--space-2xl);">
+        <a href="cars.html" class="btn btn-navy btn-lg">Explore All Vehicles →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Why Choose Us</span>
+        <h2>Why Travel With KAVIN TRAVELS?</h2>
+        <p>We pride ourselves on superior punctuality, sanitized cars, and dedicated customer delight.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📞</div>
+          <h4>24/7 Support</h4>
+          <p>Round-the-clock customer assistance for route guidance, booking updates, and instant emergency help.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👨‍✈️</div>
+          <h4>Verified Chauffeurs</h4>
+          <p>Professional, background-verified drivers with extensive route knowledge and defensive driving training.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📍</div>
+          <h4>Real-time GPS Tracking</h4>
+          <p>Live route calculation and GPS telemetry for maximum safety, transparency, and family peace of mind.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h4>Transparent Pricing</h4>
+          <p>Honest per-kilometer rates with zero hidden surge fees, tolls transparency, and instant digital receipts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-name">🚗 KAVIN <span>TRAVELS</span></div>
+          <p>Comfortable, reliable, and convenient car travel for every destination across Tamil Nadu, Kerala, Karnataka, and beyond.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-link" aria-label="Facebook">🌐</a>
+            <a href="#" class="footer-social-link" aria-label="Instagram">📸</a>
+            <a href="#" class="footer-social-link" aria-label="Twitter">🐦</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cars.html">Our Fleet</a></li>
+            <li><a href="booking.html">Book a Trip</a></li>
+            <li><a href="my-bookings.html">My Bookings</a></li>
+            <li><a href="contact.html">Contact Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Travel Services</h4>
+          <ul>
+            <li><a href="booking.html">One-Way Drop Trips</a></li>
+            <li><a href="booking.html">Round Trip Journeys</a></li>
+            <li><a href="booking.html">Multi-Day Holiday Tours</a></li>
+            <li><a href="booking.html">Airport Transfers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📞</span>
+            <a href="tel:+918072007218">+91 80720 07218</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">✉</span>
+            <a href="mailto:kavinmuthu84@gmail.com">kavinmuthu84@gmail.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📍</span>
+            <span>Gandhipuram, Coimbatore, Tamil Nadu</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 KAVIN TRAVELS. All rights reserved.</span>
+        <span>Crafted for premium travel &amp; safety</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/data/locations.js"></script>
+  <script src="js/location-selector.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

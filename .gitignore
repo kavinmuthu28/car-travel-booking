@@ -1,0 +1,35 @@
+# Java & Maven
+backend/target/
+target/
+*.class
+
+# IDE & Editor files
+.idea/
+*.iml
+.vscode/
+*.ipr
+*.iws
+
+# OS Generated
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Environment & Secret Configurations
+.env
+.env.*
+application-local.properties
+application-prod.properties
+
+# Node
+node_modules/
+
+# Temporary / Cache
+*.tmp
+*.temp
+*.bak

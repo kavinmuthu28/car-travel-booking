@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Bookings — KAVIN TRAVELS Admin</title>
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <!-- ADMIN NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="dashboard.html" class="nav-logo">
+        <div class="logo-icon" style="background:linear-gradient(135deg, var(--color-primary), var(--color-primary-light));">⚙️</div>
+        <div class="logo-text">
+          <span class="logo-name">KAVIN <span>TRAVELS</span></span>
+          <span class="logo-tagline" style="color:var(--color-accent);font-weight:700;">Admin Portal</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="cars.html">🚗 Cars</a></li>
+        <li><a href="bookings.html" class="active">📋 Bookings</a></li>
+        <li><a href="users.html">👥 Users</a></li>
+        <li><a href="payments.html">💳 Payments</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button onclick="adminLogout()" class="btn btn-danger btn-sm">Logout</button>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-mobile-menu" id="nav-mobile-menu">
+      <a href="dashboard.html">📊 Dashboard</a>
+      <a href="cars.html">🚗 Manage Cars</a>
+      <a href="bookings.html" class="active">📋 All Bookings</a>
+      <a href="users.html">👥 Customer Accounts</a>
+      <a href="payments.html">💳 Payment Transactions</a>
+      <div class="nav-mobile-divider"></div>
+      <a href="#" onclick="adminLogout();return false;">🚪 Logout</a>
+    </div>
+  </nav>
+
+  <main class="admin-container">
+    <div class="admin-toolbar">
+      <div>
+        <h2 class="admin-toolbar-title">📋 Trip Bookings Management</h2>
+        <p style="color:var(--color-mid-gray);">View live requests, confirm trips, and update customer status</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-secondary btn-sm" onclick="filterAdminBookings('ALL')">All</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterAdminBookings('PENDING')">Pending</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterAdminBookings('CONFIRMED')">Confirmed</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterAdminBookings('COMPLETED')">Completed</button>
+        <button class="btn btn-secondary btn-sm" onclick="filterAdminBookings('CANCELLED')">Cancelled</button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Booking #</th>
+            <th>Customer</th>
+            <th>Contact</th>
+            <th>Route</th>
+            <th>Vehicle</th>
+            <th>Travel Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="admin-bookings-tbody">
+          <tr><td colspan="9" style="text-align:center;padding:24px;">Loading bookings...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (requireAdmin()) {
+        initAdminBookings();
+      }
+    });
+  </script>
+</body>
+</html>

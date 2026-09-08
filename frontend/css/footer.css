@@ -1,0 +1,181 @@
+/* ================================================================
+   footer.css — Deep Navy Dark Footer
+   KAVIN TRAVELS
+   ================================================================ */
+
+.footer {
+  background: linear-gradient(180deg, #0a192f 0%, #050c18 100%);
+  color: #94a3b8;
+  padding: var(--space-3xl) 0 var(--space-xl);
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-gold) 50%, var(--color-primary-light) 100%);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer-brand .logo-name {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-brand .logo-name span {
+  color: var(--color-accent);
+}
+
+.footer-brand p {
+  color: #94a3b8;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  max-width: 360px;
+}
+
+.footer-brand .footer-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: var(--space-md);
+}
+
+.footer-social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #cbd5e1;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.footer-social-link:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.footer-col h4 {
+  color: #ffffff;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-col h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 24px;
+  height: 2px;
+  background: var(--color-gold);
+  border-radius: 2px;
+}
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col ul li a {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-col ul li a:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.footer-contact-item .icon {
+  color: var(--color-gold);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #64748b;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.footer-bottom a {
+  color: #94a3b8;
+}
+
+.footer-bottom a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}

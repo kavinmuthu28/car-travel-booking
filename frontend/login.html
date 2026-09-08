@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Sign In — KAVIN TRAVELS</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body style="padding-top:0;">
+
+  <div class="auth-page">
+    <div class="auth-split">
+
+      <!-- Left Brand Panel -->
+      <div class="auth-brand-panel">
+        <a href="index.html" class="auth-brand-logo">
+          <div class="logo-icon">🚗</div>
+          <span>KAVIN TRAVELS</span>
+        </a>
+
+        <div class="auth-brand-content">
+          <h1>Welcome <span>Back!</span></h1>
+          <p>Sign in to your account to track bookings, view trip receipts, manage upcoming journeys, and unlock premium member rates.</p>
+          
+          <div class="auth-features-list">
+            <div class="auth-feature-item">
+              <div class="feature-check">✓</div>
+              <span>Verified chauffeurs &amp; sanitized cars</span>
+            </div>
+            <div class="auth-feature-item">
+              <div class="feature-check">✓</div>
+              <span>Instant trip confirmation &amp; digital receipts</span>
+            </div>
+            <div class="auth-feature-item">
+              <div class="feature-check">✓</div>
+              <span>24/7 round-the-clock journey support</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-brand-footer">
+          © 2026 KAVIN TRAVELS. All rights reserved.
+        </div>
+      </div>
+
+      <!-- Right Form Panel -->
+      <div class="auth-form-panel">
+        <div class="auth-form-container">
+          <div class="auth-header">
+            <h2>Customer Sign In</h2>
+            <p>Enter your email and password to access your account</p>
+          </div>
+
+          <form id="login-form" onsubmit="return handleLoginSubmit(event)">
+            <div class="form-group">
+              <label for="login-email">Email Address</label>
+              <input type="email" id="login-email" placeholder="name@example.com" required autocomplete="email" />
+            </div>
+
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <div class="auth-password-wrapper">
+                <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password" />
+                <button type="button" class="auth-password-toggle" onclick="togglePasswordVisibility('login-password')" title="Toggle password visibility">👁</button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" id="btn-login-submit" style="width:100%;margin-top:var(--space-md);">
+              Sign In to Account
+            </button>
+          </form>
+
+          <div class="auth-divider">
+            <span>OR</span>
+          </div>
+
+          <div class="auth-footer-links">
+            New to KAVIN TRAVELS? <a href="register.html">Create an Account</a>
+          </div>
+          
+          <div class="auth-footer-links" style="margin-top:var(--space-md);font-size:0.85rem;">
+            Staff or Administrator? <a href="admin/admin-login.html" style="color:var(--color-primary);">Admin Portal Login →</a>
+          </div>
+
+          <div class="text-center" style="margin-top:var(--space-xl);">
+            <a href="index.html" style="font-size:0.88rem;color:var(--color-mid-gray);font-weight:600;">← Return to Homepage</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    function togglePasswordVisibility(inputId) {
+      const input = document.getElementById(inputId);
+      if (input) {
+        input.type = input.type === 'password' ? 'text' : 'password';
+      }
+    }
+  </script>
+</body>
+</html>
