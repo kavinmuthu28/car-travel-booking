@@ -8,12 +8,23 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
     Optional<Booking> findByBookingNumber(String bookingNumber);
     List<Booking> findByUserIdOrderByCreatedAtDesc(Long userId);
     List<Booking> findByBookingStatusOrderByCreatedAtDesc(BookingStatus bookingStatus);
     List<Booking> findAllByOrderByCreatedAtDesc();
-    @Query("SELECT COUNT(b) > 0 FROM Booking b WHERE b.car.id = :carId AND b.pickupDate = :pickupDate AND b.bookingStatus NOT IN ('CANCELLED')")
-    boolean existsByCarIdAndPickupDateAndNotCancelled(@Param("carId") Long carId, @Param("pickupDate") LocalDate pickupDate);
+
+    /**
+     * FIX BUG-010: Original query used string literal 'CANCELLED' but the
+     * BookingStatusConverter stores enum values as lowercase strings in MySQL.
+     * Using the enum parameter directly lets JPA use the AttributeConverter properly.
+     */
+    @Query("SELECT COUNT(b) > 0 FROM Booking b WHERE b.car.id = :carId AND b.pickupDate = :pickupDate AND b.bookingStatus <> :cancelledStatus")
+    boolean existsByCarIdAndPickupDateAndNotCancelled(
+            @Param("carId") Long carId,
+            @Param("pickupDate") LocalDate pickupDate,
+            @Param("cancelledStatus") BookingStatus cancelledStatus
+    );
 }

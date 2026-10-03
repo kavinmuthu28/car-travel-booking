@@ -99,8 +99,12 @@ async function handleResponse(response, endpoint) {
     auth.clearSession();
     showToast('Your session has expired. Please log in again.', 'error');
     setTimeout(() => {
+      // FIX BUG-018: Use absolute paths so redirects work from any subdirectory (e.g. /admin/)
       const isAdmin = window.location.pathname.includes('/admin/');
-      window.location.href = isAdmin ? 'admin-login.html' : 'login.html';
+      const frontendRoot = window.location.origin;
+      window.location.href = isAdmin
+        ? `${frontendRoot}/admin/admin-login.html`
+        : `${frontendRoot}/login.html`;
     }, 1500);
     throw new Error('Session expired');
   }

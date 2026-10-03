@@ -22,7 +22,9 @@ async function loadCustomerBookings() {
   const user = auth.getUser();
 
   try {
-    const data = await api.get(`/api/bookings/user/${user.id}`, true);
+    // FIX BUG-002: Use /api/bookings/my (ownership-enforced endpoint)
+    // instead of /api/bookings/user/{userId} which is now ADMIN only
+    const data = await api.get(`/api/bookings/my`, true);
     myBookings = data || [];
     renderBookingsList(myBookings);
   } catch (err) {
